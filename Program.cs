@@ -25,17 +25,35 @@ static void Main(String[] args)
         Console.WriteLine("Enter an amount: ");
         string howMuch = Console.ReadLine();
         if (howMuch == "") return;
+
+        //Use int.TryParse para tentar converter a string howMuchem int
+        //se teve êxito (como fez anteriormente no capitulo)
+
         if (int.TryParse(howMuch, out int amount))
         {
             Console.Write("Who should give the cash: ");
             string whichGuy = Console.ReadLine();
             if (whichGuy == "Joe")
             {
-
+                //Chame o método Givecash do objeto joe e salve os resultados
+                //Cahme o método ReceiveCash do objeto bo com os resultados salvos
+                int cashGiven = joe.GiveCash(amount);
+                bob.ReceiveCash(cashGiven);
+            }
+            else if (whichGuy == "Bob")
+            {
+                int cashGiven = bob.GiveCash(amount);
+                joe.ReceiveCash(cashGiven);
+            }
+            else
+            {
+                Console.WriteLine("Please enter  'Joe' or 'Bob'");
             }
         }
-        //Use int.TryParse para tentar converter a string howMuchem int
-        //se teve êxito (como fez anteriormente no capitulo)
+        else
+        {
+            Console.WriteLine("Please enter an amount (or a blank line to exit). ");
+        }
 
        
     }
